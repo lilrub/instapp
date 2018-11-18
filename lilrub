@@ -1,0 +1,36 @@
+# Instagram profile picture viewer with large size :)
+# Coded by LilRub
+
+import os
+import re
+import webbrowser
+import sys
+try:
+	import requests
+except:
+	print("[-] Requests modulu kurulu degil! Lutfen requests modulunu kurun ve programi yeniden calistirin!")
+	sys.exit()
+if os.name == "nt":
+	os.system("cls")
+else:
+	os.system("clear")
+print("""
+_     _ _ ____        _
+| |   (_) |  _ \ _   _| |__
+| |   | | | |_) | | | | '_ \
+| |___| | |  _ <| |_| | |_) |
+|_____|_|_|_| \_\\__,_|_.__/
+    Coded by LilRub
+""")
+user = input("[*] Username : ")
+print("[!] Lutfen 5 saniye bekleyin...")
+session = requests.Session()
+r = session.post("https://instadpdownload.com/instagramstories/",data={'username':user})
+bul = re.findall("<img class='downloadable card-img-top' src='(.*?)'",r.text)
+for bul1 in bul:
+	if "s320x320" in bul1:
+		pass
+	else:
+		print("")
+		print("[+] Resim tarayicida acildi")
+		webbrowser.open(bul1)
